@@ -1,11 +1,19 @@
-   {% for variant in product.variants %}
-  <input type="radio" id="{{ section.id }}-{{ variant.title }}-{{ forloop.index0 }}"
-        name="{{ variant.title }}"
-        value="{{ variant | escape }}"
-        form="product-form-{{ section.id }}"
-        {% if variant.selected_value == value %}checked{% endif %}
-  >
-  <label for="{{ section.id }}-{{ variant.title }}-{{ forloop.index0 }}">
-    {{ variant.title }} - {{ variant.price | money }}
-  </label>
+{% for variant in product.variants %}
+<input type="radio" id="{{ section.id }}-{{ variant.title }}-{{ forloop.index0 }}"
+     name="{{ variant.title }}"
+     value="{{ variant | escape }}"
+     form="product-form-{{ section.id }}"
+     {% if variant.selected_value == value %}checked{% endif %}
+>
+<label for="{{ section.id }}-{{ variant.title }}-{{ forloop.index0 }}">
+ {{ variant.title }} - {{ variant.price | money }}
+</label>
 {%- endfor -%}
+
+<!--For drop_down-->
+
+<select id="product-select" name="id">
+ {% for variant in product.variants %}
+ <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+ {% endfor %}
+</select>
