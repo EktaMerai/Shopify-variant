@@ -1,0 +1,11 @@
+   {% for variant in product.variants %}
+  <input type="radio" id="{{ section.id }}-{{ variant.title }}-{{ forloop.index0 }}"
+        name="{{ variant.title }}"
+        value="{{ variant | escape }}"
+        form="product-form-{{ section.id }}"
+        {% if variant.selected_value == value %}checked{% endif %}
+  >
+  <label for="{{ section.id }}-{{ variant.title }}-{{ forloop.index0 }}">
+    {{ variant.title }} - {{ variant.price | money }}
+  </label>
+{%- endfor -%}
